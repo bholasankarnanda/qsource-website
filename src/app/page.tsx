@@ -1,6 +1,17 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import HeroSection from "@/components/Home/HeroSection";
+import HowWeWorkSection from "@/components/Home/HowWeWorkSection";
+import ServicesSection from "@/components/Home/ServicesSection";
+import WhatWeOfferSection from "@/components/Home/WhatWeOfferSection";
 
 export default function Home() {
-  return <div>This is main page</div>;
+  return (
+    <main>
+      {/*---------- Home component call start ------------ */}
+      <HeroSection />
+      <ServicesSection />
+      <WhatWeOfferSection />
+      <HowWeWorkSection />
+      {/*---------- Home component call end ------------ */}
+    </main>
+  );
 }
