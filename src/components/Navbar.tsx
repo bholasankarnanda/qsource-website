@@ -21,7 +21,13 @@ interface Props {
 }
 
 const drawerWidth = 240;
-const navItems = ["Home", "Our Services", "Find Jobs", "About", "Contact"];
+const navItems = [
+  { title: "Home", path: "/" },
+  { title: "Our Services", path: "/ourservices" },
+  { title: "Find Jobs", path: "/findjobs" },
+  { title: "About", path: "/about" },
+  { title: "Contact", path: "/contact" },
+];
 
 export default function Navbar(props: Props) {
   const { window } = props;
@@ -36,13 +42,13 @@ export default function Navbar(props: Props) {
       <List>
         {navItems.map((item) => (
           <Link
-            key={item}
-            href={item === "Home" ? "/" : `/${item.toLowerCase()}`}
+            key={item.title}
+            href={item.path}
             style={{ textDecoration: "none", color: "inherit" }}
           >
             <ListItem disablePadding>
               <ListItemButton sx={{ textAlign: "center" }}>
-                <ListItemText primary={item} />
+                <ListItemText primary={item.title} />
               </ListItemButton>
             </ListItem>
           </Link>
@@ -88,12 +94,12 @@ export default function Navbar(props: Props) {
             <Box sx={{ display: { xs: "none", sm: "flex" }, gap: 4 }}>
               {navItems.map((item) => (
                 <Link
-                  key={item}
-                  href={item === "Home" ? "/" : `/${item.toLowerCase()}`}
+                  key={item.title}
+                  href={item.path}
                   style={{ textDecoration: "none" }}
                 >
                   <Button sx={{ color: "text.primary", fontSize: "1rem" }}>
-                    {item}
+                    {item.title}
                   </Button>
                 </Link>
               ))}
