@@ -11,6 +11,7 @@ const GreenSwoosh = () => (
   <Box
     component="svg"
     viewBox="0 0 200 20"
+    data-testid="green-swoosh"
     sx={{
       position: "absolute",
       bottom: { xs: -5, md: -10 },

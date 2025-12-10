@@ -4,6 +4,14 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { Box, Toolbar, Container } from "@mui/material";
 import ThemeRegistry from "../components/ThemeRegistry/ThemeRegistry";
+import type { Viewport } from "next";
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+};
 
 import { Be_Vietnam_Pro } from "next/font/google";
 const beVietnam = Be_Vietnam_Pro({
@@ -12,8 +20,25 @@ const beVietnam = Be_Vietnam_Pro({
 });
 
 export const metadata: Metadata = {
-  title: "QSource Landing",
-  description: "Enterprise IT Services",
+  title: "QSource - Enterprise IT Services Company",
+  description:
+    "QSource is a leading Enterprise IT Services Company providing innovative solutions to businesses worldwide. Explore our services today!",
+  icons: {
+    icon: "/favicon.ico",
+  },
+  keywords: [
+    "QSource",
+    "Enterprise IT Services",
+    "IT Solutions",
+    "Business Technology",
+    "IT Consulting",
+    "Managed IT Services",
+    "Cloud Services",
+    "Cybersecurity",
+    "Digital Transformation",
+    "Tech Support",
+  ],
+  authors: [{ name: "QSource", url: "https://www.qsource.com" }],
 };
 
 export default function RootLayout({
