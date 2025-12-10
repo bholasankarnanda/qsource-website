@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Divider, Typography } from "@mui/material";
 
 const Synergizing = () => {
   return (
@@ -9,35 +9,39 @@ const Synergizing = () => {
         mx: "auto",
         mt: 8,
         px: 2,
+        xs: 12,
+        sm: 6,
+        md: 4,
       }}
     >
       {/* Main Heading */}
       <Typography
-        variant="h3"
+        variant="h2"
+        component="h2"
         sx={{
-          fontWeight: 700,
-          lineHeight: 1.2,
+          fontWeight: 800,
           color: "text.primary",
           mb: 2,
+          fontSize: { xs: "2rem", md: "3rem" },
         }}
       >
-        Synergizing Successful <br />
-        Holistic IT Solutions
+        Synergizing Successful Holistic IT Solutions
       </Typography>
 
       {/* Subtitle */}
       <Typography
-        variant="h6"
+        variant="body1"
         sx={{
-          fontWeight: 400,
           color: "text.secondary",
-          maxWidth: "800px",
+          fontSize: "1.1rem",
+          lineHeight: 1.6,
+          maxWidth: "700px",
           mx: "auto",
         }}
       >
         End-to-End IT Excellence: Consultation, Development, Managed Services,
         Cloud Computing, Staffing, Cybersecurity – Transforming Businesses
-        Seamlessly.
+        Seamlessly.​
       </Typography>
     </Box>
   );
