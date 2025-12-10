@@ -28,7 +28,7 @@ const JobHeroSection = () => {
           sx={{
             fontFamily: '"Be Vietnam Pro", sans-serif',
             fontWeight: 800,
-            color: "#354B60",
+            color: "#0F172A",
             fontSize: { xs: "3rem", md: "4.5rem" },
             lineHeight: 1.1, // Tighter line height for large text
             letterSpacing: "-0.03em",

@@ -21,8 +21,8 @@ const JOB_TITLES = [
 const ROLES = [...JOB_TITLES, ...JOB_TITLES, ...JOB_TITLES];
 
 // Animation Configuration
-const CONTAINER_HEIGHT = 300;
-const ITEM_HEIGHT = 40;
+const CONTAINER_HEIGHT = 400;
+const ITEM_HEIGHT = 50;
 const PAUSE_DURATION = 100;
 const LERP_FACTOR = 0.05; // Lower = smoother/slower, Higher = snappier
 
@@ -154,7 +154,7 @@ const RecruitingSection = () => {
                 sx={{
                   fontFamily: '"Be Vietnam Pro", sans-serif',
                   fontWeight: 800,
-                  color: "#354B60",
+                  color: "#0F172A",
                   fontSize: { xs: "2rem", md: "3.5rem" },
                   lineHeight: 1.1,
                   mb: 2,
@@ -197,6 +197,7 @@ const RecruitingSection = () => {
               >
                 {/* moving container */}
                 <Box
+                  data-testid="animated-container"
                   sx={{
                     position: "absolute",
                     width: "100%",
