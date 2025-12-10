@@ -1,7 +1,7 @@
-import { Roboto } from "next/font/google";
+import { Be_Vietnam_Pro } from "next/font/google";
 import { createTheme } from "@mui/material/styles";
 
-const roboto = Roboto({
+const be_Vietnam_Pro = Be_Vietnam_Pro({
   weight: ["300", "400", "500", "700"],
   subsets: ["latin"],
   display: "swap",
@@ -21,7 +21,7 @@ const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: roboto.style.fontFamily,
+    fontFamily: be_Vietnam_Pro.style.fontFamily,
   },
   components: {
     MuiButton: {
