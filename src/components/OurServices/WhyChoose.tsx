@@ -5,27 +5,43 @@ import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
-import { Divider } from "@mui/material";
 
 const smooth = [
   {
-    title: "Strategic IT Solutions",
+    title: "IT Consulting",
     Description:
-      "Embark on a journey of innovation and efficiency with our Strategic IT Solutions. From insightful IT Consulting to bespoke Software Development, seamless Managed IT Services, and cutting-edge Cloud Computing, and Cybersecurity, we redefine excellence.",
+      "Navigate the complexities of the digital landscape with our expert IT consulting services. Unleash tailored strategies for optimal technology utilization, ensuring your business stays agile and ahead in today's dynamic market.",
   },
   {
-    title: "Talent Empowerment Services",
+    title: "Managed IT Services",
     Description:
-      "Unlock the potential of your workforce with our Talent Empowerment Services. Through meticulous Staffing and Recruitment, we connect you with the brightest talents, propelling your business towards unparalleled success.",
+      "Experience worry-free operations with our Managed IT Services. From proactive maintenance to rapid issue resolution, our comprehensive approach ensures your IT infrastructure runs smoothly, allowing you to focus on what matters – your business.",
+  },
+  {
+    title: "Staffing and Recruitment",
+    Description:
+      "Build a powerhouse team with our strategic Staffing and Recruitment solutions. Access top-tier talent with precision, ensuring that your workforce is not just skilled for today, but ready to tackle the challenges of tomorrow.",
+  },
+  {
+    title: "Software Development",
+    Description:
+      "Elevate your business with cutting-edge software solutions tailored to your unique needs. Our seasoned developers transform ideas into powerful applications, enhancing efficiency and delivering a seamless user experience.",
+  },
+  {
+    title: "Cloud Computing Services",
+    Description:
+      "Embrace the future of business with our Cloud Computing Services. Seamlessly migrate and manage your data on secure, scalable cloud platforms, unlocking flexibility and efficiency for unprecedented growth.",
+  },
+  {
+    title: "Cybersecurity Solutions",
+    Description:
+      "Guard your business against evolving threats with our Cybersecurity Solutions. Our robust strategies and cutting-edge technologies provide a shield for your digital assets, ensuring the utmost security in an interconnected world..",
   },
 ];
 
-export default function SmoothSailing() {
+export default function WhyChoose() {
   return (
-    <Box
-      component="section"
-      sx={{ py: 10, bgcolor: "#ffffff", position: "relative" }}
-    >
+    <Box component="section" sx={{ bgcolor: "#ffffff", position: "relative" }}>
       <Container maxWidth="xl">
         {/* SECTION HEADER */}
         <Box
@@ -38,7 +54,7 @@ export default function SmoothSailing() {
           }}
         >
           <Typography
-            variant="h3"
+            variant="h5"
             component="h2"
             sx={{
               fontWeight: 800,
@@ -47,23 +63,7 @@ export default function SmoothSailing() {
               fontSize: { xs: "2rem", md: "3rem" },
             }}
           >
-            Smooth Sailing: <br />
-            Mastering IT Navigation
-          </Typography>
-
-          <Typography
-            variant="body1"
-            sx={{
-              color: "text.secondary",
-              fontSize: "1.1rem",
-              lineHeight: 1.6,
-              maxWidth: "700px",
-              mx: "auto",
-            }}
-          >
-            Navigating the IT maze like a boss – from brainstorming brilliance
-            to cyber ninja moves, we ‘ ve got your business transformation on
-            cruise control!
+            Unified Intelligent IT Solutions Hub
           </Typography>
         </Box>
 
@@ -79,6 +79,7 @@ export default function SmoothSailing() {
                   height: "100%",
                   display: "flex",
                   flexDirection: "column",
+
                   alignItems: "center",
                   textAlign: "center",
                   borderRadius: 3,
@@ -101,6 +102,7 @@ export default function SmoothSailing() {
                   sx={{
                     color: "text.secondary",
                     mb: 2,
+
                     lineHeight: 1.8,
                     textAlign: "left",
                   }}
