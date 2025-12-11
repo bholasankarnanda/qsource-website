@@ -38,7 +38,7 @@ export default function ServicesSection() {
     <Box sx={{ px: 5, py: 8, maxWidth: "1200px", mx: "auto" }}>
       <Stack spacing={8}>
         <Typography
-          variant="h3"
+          variant="h4"
           component="h2"
           sx={{
             fontWeight: 800,
