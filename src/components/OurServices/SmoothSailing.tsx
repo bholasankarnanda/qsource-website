@@ -5,7 +5,6 @@ import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
-import { Divider } from "@mui/material";
 
 const smooth = [
   {
@@ -24,17 +23,22 @@ export default function SmoothSailing() {
   return (
     <Box
       component="section"
-      sx={{ py: 10, bgcolor: "#ffffff", position: "relative" }}
+      sx={{
+        py: { xs: 4, md: 10 },
+        bgcolor: "#ffffff",
+        position: "relative",
+      }}
     >
       <Container maxWidth="xl">
         {/* SECTION HEADER */}
         <Box
           sx={{
             textAlign: "center",
-            mb: 8,
+            mb: { xs: 4, md: 8 },
             position: "relative",
             maxWidth: 800,
             mx: "auto",
+            px: { xs: 2, md: 0 },
           }}
         >
           <Typography
@@ -43,8 +47,9 @@ export default function SmoothSailing() {
             sx={{
               fontWeight: 800,
               color: "text.primary",
-              mb: 2,
-              fontSize: { xs: "2rem", md: "3rem" },
+              mb: { xs: 1.5, md: 2 },
+              fontSize: { xs: "1.8rem", md: "3rem" },
+              lineHeight: { xs: 1.2, md: 1.3 },
             }}
           >
             Smooth Sailing: <br />
@@ -55,10 +60,11 @@ export default function SmoothSailing() {
             variant="body1"
             sx={{
               color: "text.secondary",
-              fontSize: "1.1rem",
-              lineHeight: 1.6,
+              fontSize: { xs: "1rem", md: "1.1rem" },
+              lineHeight: { xs: 1.45, md: 1.6 },
               maxWidth: "700px",
               mx: "auto",
+              px: { xs: 1, md: 0 },
             }}
           >
             Navigating the IT maze like a boss – from brainstorming brilliance
@@ -68,14 +74,17 @@ export default function SmoothSailing() {
         </Box>
 
         {/* SERVICES GRID */}
-        <Grid container spacing={10} justifyContent="center">
+        <Grid
+          container
+          spacing={{ xs: 4, sm: 6, md: 10 }}
+          justifyContent="center"
+        >
           {smooth.map((smooth, index) => (
             <Grid key={index} size={{ xs: 12, sm: 6, md: 4 }}>
               <Paper
                 elevation={0}
                 sx={{
-                  //   bgcolor: "#f8f9fa",
-                  p: 3,
+                  p: { xs: 2.5, md: 3 },
                   height: "100%",
                   display: "flex",
                   flexDirection: "column",
@@ -92,17 +101,23 @@ export default function SmoothSailing() {
               >
                 <Typography
                   variant="h6"
-                  sx={{ fontWeight: 700, color: "text.primary", mb: 1 }}
+                  sx={{
+                    fontWeight: 700,
+                    color: "text.primary",
+                    mb: { xs: 0.8, md: 1 },
+                  }}
                 >
                   {smooth.title}
                 </Typography>
+
                 <Typography
                   variant="body1"
                   sx={{
                     color: "text.secondary",
-                    mb: 2,
-                    lineHeight: 1.8,
+                    mb: { xs: 1, md: 2 },
+                    lineHeight: { xs: 1.5, md: 1.8 },
                     textAlign: "left",
+                    fontSize: { xs: "0.95rem", md: "1rem" },
                   }}
                 >
                   {smooth.Description}

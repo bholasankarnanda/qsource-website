@@ -1,4 +1,4 @@
-import { Box, Divider, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 const Synergizing = () => {
   return (
@@ -7,11 +7,8 @@ const Synergizing = () => {
         textAlign: "center",
         maxWidth: "900px",
         mx: "auto",
-        mt: 8,
+        mt: { xs: 4, md: 8 },
         px: 2,
-        xs: 12,
-        sm: 6,
-        md: 4,
       }}
     >
       {/* Main Heading */}
@@ -21,8 +18,8 @@ const Synergizing = () => {
         sx={{
           fontWeight: 800,
           color: "text.primary",
-          mb: 2,
-          fontSize: { xs: "2rem", md: "3rem" },
+          mb: { xs: 1, md: 2 },
+          fontSize: { xs: "1.8rem", md: "3rem" },
         }}
       >
         Synergizing Successful Holistic IT Solutions
@@ -33,8 +30,8 @@ const Synergizing = () => {
         variant="body1"
         sx={{
           color: "text.secondary",
-          fontSize: "1.1rem",
-          lineHeight: 1.6,
+          fontSize: { xs: "1rem", md: "1.1rem" },
+          lineHeight: { xs: 1.4, md: 1.6 },
           maxWidth: "700px",
           mx: "auto",
         }}
