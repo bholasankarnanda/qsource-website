@@ -5,7 +5,7 @@ import JobOpeningsSection from "@/components/jobs/JobOpeningsSection";
 import ContactSection from "@/components/jobs/ContactSection";
 import { Box, Divider } from "@mui/material";
 
-const findjobs = () => {
+const careers = () => {
   return (
     <Box sx={{ fontFamily: "Be Vietnam Pro", fontWeight: 800 }}>
       <JobHeroSection />
@@ -17,4 +17,4 @@ const findjobs = () => {
     </Box>
   );
 };
-export default findjobs;
+export default careers;

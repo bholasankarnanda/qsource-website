@@ -7,10 +7,9 @@ describe("Navbar Component", () => {
 
     const homeLinks = screen.getAllByText("Home");
     expect(homeLinks.length).toBeGreaterThan(0);
-
-    expect(screen.getAllByText("Our Services").length).toBeGreaterThan(0);
-    expect(screen.getAllByText("Find Jobs").length).toBeGreaterThan(0);
     expect(screen.getAllByText("About").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("Services").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("Careers").length).toBeGreaterThan(0);
     expect(screen.getAllByText("Contact").length).toBeGreaterThan(0);
   });
 
@@ -23,6 +22,6 @@ describe("Navbar Component", () => {
 
     // Drawer items should appear
     expect(screen.getAllByText("Home").length).toBeGreaterThan(0);
-    expect(screen.getAllByText("Our Services").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("Services").length).toBeGreaterThan(0);
   });
 });
