@@ -57,7 +57,7 @@ export default function WhyChoose() {
             variant="h5"
             component="h2"
             sx={{
-              fontWeight: 800,
+              fontWeight: 700,
               color: "text.primary",
               mb: 2,
               fontSize: { xs: "2rem", md: "3rem" },
