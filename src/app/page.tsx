@@ -4,6 +4,7 @@ import PartnershipSection from "@/components/Home/PartnershipSection";
 import ServicesSection from "@/components/Home/ServicesSection";
 import WhatWeOfferSection from "@/components/Home/WhatWeOfferSection";
 
+
 export default function Home() {
   return (
     <main>
