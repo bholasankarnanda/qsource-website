@@ -11,6 +11,7 @@ const GreenSwoosh = () => (
   <Box
     component="svg"
     viewBox="0 0 200 20"
+    data-testid="green-swoosh"
     sx={{
       position: "absolute",
       bottom: { xs: -5, md: -10 },
@@ -69,7 +70,7 @@ export default function HeroSection() {
             component="h1"
             sx={{
               fontWeight: 800,
-              fontSize: { xs: "3rem", md: "6rem" },
+              fontSize: { xs: "2rem", md: "6rem" },
               mb: 2,
               letterSpacing: -0.5,
             }}
@@ -89,7 +90,7 @@ export default function HeroSection() {
             variant="h3"
             sx={{
               fontWeight: 600,
-              fontSize: { xs: "1.4rem", md: "3rem" },
+              fontSize: { xs: "1.2rem", md: "3rem" },
               mb: 3,
               opacity: 0.95,
             }}
