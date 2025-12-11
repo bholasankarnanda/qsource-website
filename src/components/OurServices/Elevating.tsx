@@ -39,11 +39,11 @@ export default function ServicesSection() {
       <Stack spacing={8}>
         <Typography
           variant="h5"
-          component="h2"
           sx={{
             fontWeight: 700,
             color: "text.primary",
             mb: 2,
+            textAlign: "center",
             fontSize: { xs: "2rem", md: "3rem" },
           }}
         >
