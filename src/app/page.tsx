@@ -3,6 +3,7 @@ import HowWeWorkSection from "@/components/Home/HowWeWorkSection";
 import ServicesSection from "@/components/Home/ServicesSection";
 import WhatWeOfferSection from "@/components/Home/WhatWeOfferSection";
 
+
 export default function Home() {
   return (
     <main>
@@ -11,6 +12,7 @@ export default function Home() {
       <ServicesSection />
       <WhatWeOfferSection />
       <HowWeWorkSection />
+      
       {/*---------- Home component call end ------------ */}
     </main>
   );
