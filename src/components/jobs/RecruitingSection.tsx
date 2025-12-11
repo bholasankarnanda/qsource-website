@@ -1,7 +1,14 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
-import { Box, Typography, Container, Paper } from "@mui/material";
+import React, { useState, useEffect, useRef, useMemo } from "react";
+import {
+  Box,
+  Typography,
+  Container,
+  Paper,
+  useTheme,
+  useMediaQuery,
+} from "@mui/material";
 
 // The list of roles
 const JOB_TITLES = [
@@ -15,22 +22,24 @@ const JOB_TITLES = [
 ];
 
 // Duplicate the list 3 times:
-// 1. Buffer above
-// 2. Main visible set
-// 3. Buffer below
+// 1. Buffer above, 2. Main visible set, 3. Buffer below
 const ROLES = [...JOB_TITLES, ...JOB_TITLES, ...JOB_TITLES];
 
-// Animation Configuration
-const CONTAINER_HEIGHT = 400;
-const ITEM_HEIGHT = 50;
-const PAUSE_DURATION = 100;
-const LERP_FACTOR = 0.05; // Lower = smoother/slower, Higher = snappier
-
 const RecruitingSection = () => {
-  // Start at the beginning of the middle set (Index 7)
-  // i calculate the initial scrollY so that item 7 is perfectly centered.
-  // Center of Container = 200px. Center of Item = 30px (half of 60).
-  // Formula: ScrollY = (Index * ItemHeight) - (ContainerHalf - ItemHalf)
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+
+  // --- Configuration based on Screen Size ---
+  // On mobile, we reduce the height and spacing to fit better
+  const CONTAINER_HEIGHT = isMobile ? 250 : 400;
+  const ITEM_HEIGHT = isMobile ? 40 : 50;
+
+  // Animation Constants
+  const PAUSE_DURATION = 1000; // Increased slightly for better readability
+  const LERP_FACTOR = 0.05;
+
+  // --- Animation State Calculations ---
+  // Center of Container
   const CENTER_OFFSET = CONTAINER_HEIGHT / 2 - ITEM_HEIGHT / 2;
   const INITIAL_INDEX = JOB_TITLES.length; // 7
   const INITIAL_SCROLL = INITIAL_INDEX * ITEM_HEIGHT - CENTER_OFFSET;
@@ -44,7 +53,19 @@ const RecruitingSection = () => {
   const isMovingRef = useRef(false);
   const requestRef = useRef<number>(0);
 
-  // Animation Loop
+  // Reset animation when screen size changes (responsive reset)
+  useEffect(() => {
+    // When switching between mobile/desktop, snap to the correct new scroll position
+    // to prevent the animation from jumping to a wrong offset.
+    const newInitialScroll = INITIAL_INDEX * ITEM_HEIGHT - CENTER_OFFSET;
+    scrollRef.current = newInitialScroll;
+    targetIndexRef.current = INITIAL_INDEX;
+    setScrollY(newInitialScroll);
+    lastArrivalTimeRef.current = Date.now();
+    isMovingRef.current = false;
+  }, [isMobile, CENTER_OFFSET, ITEM_HEIGHT]); // Re-run if these change
+
+  // --- Animation Loop ---
   useEffect(() => {
     const animate = () => {
       const currentY = scrollRef.current;
@@ -65,7 +86,6 @@ const RecruitingSection = () => {
           // INFINITE LOOP LOGIC:
           // If we have reached the start of the 3rd set (Index 14),
           // it looks visually identical to the start of the 2nd set (Index 7).
-          // We silently snap back to Index 7 so we can keep scrolling down forever.
           if (targetIndexRef.current >= JOB_TITLES.length * 2) {
             const resetIndex = JOB_TITLES.length; // 7
             targetIndexRef.current = resetIndex;
@@ -96,7 +116,7 @@ const RecruitingSection = () => {
 
     requestRef.current = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(requestRef.current);
-  }, [CENTER_OFFSET]);
+  }, [CENTER_OFFSET, ITEM_HEIGHT, CONTAINER_HEIGHT]); // Added dependencies to handle resize updates
 
   // Helper to calculate styles based on position relative to center
   const getItemStyle = (index: number) => {
@@ -105,13 +125,14 @@ const RecruitingSection = () => {
     const distance = Math.abs(itemY + ITEM_HEIGHT / 2 - CONTAINER_HEIGHT / 2);
 
     // Visual calculations
-    const normalizedDistance = Math.min(distance, 200);
-    const opacity = Math.max(0.2, 1 - normalizedDistance / 200);
-    // Reduced max scale from 1.35 to 1.25 to prevent overflow
-    const scale = Math.max(0.8, 1.25 - normalizedDistance / 250);
+    // On mobile, the "focus zone" is smaller
+    const maxDistance = isMobile ? 150 : 200;
+    const normalizedDistance = Math.min(distance, maxDistance);
 
-    // Highlight logic (Green if centered)
-    const isCenter = distance < ITEM_HEIGHT / 2; // Strict center check
+    const opacity = Math.max(0.2, 1 - normalizedDistance / maxDistance);
+    const scale = Math.max(0.8, 1.25 - normalizedDistance / (maxDistance + 50));
+
+    const isCenter = distance < ITEM_HEIGHT / 2;
     const color = isCenter ? "#1976d2" : "#C4C8D4";
     const fontWeight = isCenter ? 800 : 700;
 
@@ -122,11 +143,13 @@ const RecruitingSection = () => {
     <Box
       component="section"
       sx={{
-        bgcolor: "light",
+        bgcolor: "#f8fafc",
         p: 2,
-        // { xs: 6, md: 10 }
         py: { xs: 4, md: 6 },
         width: "100%",
+        minHeight: "100vh",
+        display: "flex",
+        alignItems: "center",
       }}
     >
       <Container maxWidth="lg">
@@ -135,7 +158,7 @@ const RecruitingSection = () => {
           sx={{
             backgroundColor: "#FFFFFF",
             borderRadius: { xs: 4, md: 8 },
-            p: { xs: 4, md: 8 },
+            p: { xs: 3, md: 8 }, // Reduced padding on mobile
             boxShadow: "0px 10px 40px rgba(0, 0, 0, 0.05)",
           }}
         >
@@ -144,11 +167,17 @@ const RecruitingSection = () => {
               display: "flex",
               flexDirection: { xs: "column", md: "row" },
               alignItems: "center",
-              gap: { xs: 6, md: 4 },
+              gap: { xs: 4, md: 4 },
             }}
           >
             {/* Left Side: Title and Description */}
-            <Box sx={{ width: { xs: "100%", md: "40%" }, flexShrink: 0 }}>
+            <Box
+              sx={{
+                width: { xs: "100%", md: "40%" },
+                flexShrink: 0,
+                textAlign: { xs: "center", md: "left" },
+              }}
+            >
               <Typography
                 variant="h2"
                 sx={{
@@ -172,6 +201,7 @@ const RecruitingSection = () => {
                   fontSize: { xs: "1rem", md: "1.125rem" },
                   lineHeight: 1.6,
                   maxWidth: "400px",
+                  mx: { xs: "auto", md: 0 }, // Center text block on mobile
                 }}
               >
                 Discover a tapestry of career opportunities tailored just for
@@ -192,18 +222,27 @@ const RecruitingSection = () => {
                     "linear-gradient(to bottom, transparent, black 20%, black 80%, transparent)",
                   WebkitMaskImage:
                     "linear-gradient(to bottom, transparent, black 20%, black 80%, transparent)",
-                  pl: { md: 10 },
+                  // Responsive Padding: 0 on mobile (centers it), 10 on desktop (offsets it right)
+                  pl: { xs: 0, md: 10 },
+                  // Center the inner content horizontally on mobile
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: { xs: "center", md: "flex-start" },
                 }}
               >
-                {/* moving container */}
+                {/* Moving Container */}
                 <Box
                   data-testid="animated-container"
                   sx={{
                     position: "absolute",
                     width: "100%",
+                    // Apply transform. Important: We must use the scrollY state here.
                     transform: `translateY(-${scrollY}px)`,
-                    // i used JS for position, so that we don't need CSS transition here
-                    willChange: "transform", //helps browser animate smoothly
+                    willChange: "transform",
+                    // Flexbox to handle child alignment
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: { xs: "center", md: "flex-start" },
                   }}
                 >
                   {ROLES.map((role, index) => {
@@ -216,7 +255,13 @@ const RecruitingSection = () => {
                           height: ITEM_HEIGHT,
                           display: "flex",
                           alignItems: "center",
-                          transformOrigin: "left center",
+                          justifyContent: { xs: "center", md: "flex-start" },
+                          width: "100%", // Ensure full width for centering
+                          // Transform Origin: Center for mobile (pop out), Left for desktop
+                          transformOrigin: {
+                            xs: "center center",
+                            md: "left center",
+                          },
                         }}
                       >
                         <Typography
@@ -225,8 +270,12 @@ const RecruitingSection = () => {
                           sx={{
                             fontFamily: '"Be Vietnam Pro", sans-serif',
                             fontWeight: style.fontWeight,
-                            // adjusted font sizes to fit better
-                            fontSize: { xs: "1.5rem", md: "2rem" },
+                            // Responsive font size
+                            fontSize: {
+                              xs: "1.25rem",
+                              sm: "1.5rem",
+                              md: "2rem",
+                            },
                             color:
                               style.color === "#1976d2"
                                 ? {
@@ -239,9 +288,12 @@ const RecruitingSection = () => {
 
                             opacity: style.opacity,
                             transform: `scale(${style.scale})`,
-                            transformOrigin: "left center",
+                            // Ensure transformOrigin is inherited or set specifically here too if needed
+                            transformOrigin: {
+                              xs: "center center",
+                              md: "left center",
+                            },
                             whiteSpace: "nowrap",
-                            // smooth transition for the color/scale changes
                             transition:
                               "color 0.3s ease, transform 0.1s linear, opacity 0.3s ease",
                           }}
@@ -261,4 +313,5 @@ const RecruitingSection = () => {
   );
 };
 
+// Default export as App for the preview environment
 export default RecruitingSection;
