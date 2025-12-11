@@ -26,7 +26,7 @@ const Contact = () => {
 
         {/*subtitle*/}
         <Box sx={{ maxWidth: "600px", textAlign: "center" }} mt={2}>
-          <Typography fontWeight={500} color="black">
+          <Typography fontWeight={500} color="text.secondary" fontSize="1.5rem" >
             Connect with confidence. Our dedicated team is ready to answer your
             questions and find the best solutions for you.
           </Typography>
@@ -46,7 +46,7 @@ const Contact = () => {
           }}
         >
           <Typography variant="h4" fontWeight="bold" color="#1976d2" fontSize="1.8rem" mb={3}>
-            Send a Message
+            Send a message
           </Typography>
           
 
@@ -103,7 +103,7 @@ const Contact = () => {
                   fontSize: "1rem",
                   borderRadius: "10px",
                   background: "#2202d9ff",
-                  ":hover": { background: "#333" },
+                 
                 }}
               >
                 Submit

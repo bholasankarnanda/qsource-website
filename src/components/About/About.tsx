@@ -52,7 +52,7 @@ const AboutPage = () => {
     "Retail",
   ];
 
-  const certifications = ["/woman.png", "/uipath.png", "/hub.png"];
+  const certifications = ["/woman.png", "/uipath.png", "/hub.png","/wosb.jpg","/nmsdc.png"];
 
   return (
     <Container maxWidth="lg" sx={{ pt: 5, pb: 10 }}>
@@ -72,31 +72,22 @@ const AboutPage = () => {
           About QSource Group
         </Typography>
         <Typography variant="h6" maxWidth="700px" mx="auto">
-          Delivering workforce, IT, and professional solutions with a focus on quality, responsiveness, and long-lasting partnerships.
+          Delivering workforce, IT, and professional solutions with a focus on quality, responsiveness,
+          and long-lasting partnerships.
         </Typography>
       </Box>
 
-      {/* WHO WE ARE */}
+      {/* WHO WE ARE (image removed) */}
       <Grid container spacing={4} columns={12} alignItems="center" mb={10}>
-        <Grid size={{ xs: 12, md: 6 }}>
-          <Box
-            sx={{
-              borderRadius: 3,
-              overflow: "hidden",
-              boxShadow: 6,
-              height: 300,
-              transition: "0.3s",
-              "&:hover": { transform: "scale(1.03)" },
-            }}
-          />
-        </Grid>
+        <Grid size={{ xs: 12, md: 12}} />
 
-        <Grid size={{ xs: 12, md: 6 }} textAlign={{ xs: "center", md: "left" }}>
-          <Typography variant="h4" color="#01579b" fontWeight={700} mb={2}>
+        <Grid size={{ xs: 12, md: 12 }} textAlign={{ xs: "center", md: "left" }}>
+          <Typography variant="h4" color="#01579b" textAlign="center" fontWeight={700} mb={2}>
             Who We Are
           </Typography>
-          <Typography color="text.secondary" lineHeight={1.8} fontSize="1.1rem">
-            QSource Group is a workforce and technology solutions provider offering staffing, consulting, and IT services. We help organizations scale confidently and reach sustainable business goals.
+          <Typography color="black" lineHeight={1.8} fontWeight={700} fontSize="1.3rem">
+            QSource Group is a workforce and technology solutions provider offering staffing, consulting,
+            and IT services. We help organizations scale confidently and reach sustainable business goals.
           </Typography>
         </Grid>
       </Grid>
@@ -125,16 +116,20 @@ const AboutPage = () => {
                   bgcolor: "#e3f2fd",
                   transition: "0.3s",
                   "&:hover": { transform: "scale(1.05)", boxShadow: 6 },
-                  width: "100%",
+
+                  /* FIX: equal card height */
+                  height: "100%",
+                  minHeight: "230px",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
                 }}
               >
                 <CardContent>
                   <Typography variant="h6" fontWeight={700} mb={1}>
                     {p.title}
                   </Typography>
-                  <Typography color="text.secondary">
-                    {p.text}
-                  </Typography>
+                  <Typography color="text.secondary">{p.text}</Typography>
                 </CardContent>
               </Card>
             </Grid>
