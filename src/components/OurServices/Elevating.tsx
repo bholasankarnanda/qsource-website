@@ -35,8 +35,15 @@ const services = [
 
 export default function ServicesSection() {
   return (
-    <Box sx={{ px: 5, py: 8, maxWidth: "1200px", mx: "auto" }}>
-      <Stack spacing={8}>
+    <Box
+      sx={{
+        px: { xs: 2, md: 5 },
+        py: { xs: 4, md: 8 },
+        maxWidth: "1200px",
+        mx: "auto",
+      }}
+    >
+      <Stack spacing={{ xs: 4, md: 8 }}>
         <Typography
           variant="h5"
           sx={{
@@ -44,14 +51,16 @@ export default function ServicesSection() {
             color: "text.primary",
             mb: 2,
             textAlign: "center",
-            fontSize: { xs: "2rem", md: "3rem" },
+            fontSize: { xs: "1.6rem", md: "3rem" },
           }}
         >
           Elevating Your Business to Unprecedented Heights
         </Typography>
+
+        {/* ROW 1 */}
         <Stack
           direction={{ xs: "column", md: "row" }}
-          spacing={6}
+          spacing={{ xs: 3, md: 6 }}
           justifyContent="space-between"
         >
           {services.slice(0, 2).map((item, i) => (
@@ -61,7 +70,7 @@ export default function ServicesSection() {
               spacing={2}
               sx={{
                 width: { xs: "100%", md: "48%" },
-                padding: 3,
+                padding: { xs: 2, md: 3 },
                 "&:hover": {
                   transform: "translateY(-5px)",
                   background: "linear-gradient( rgb(228,243,255) 100%)",
@@ -84,9 +93,10 @@ export default function ServicesSection() {
           ))}
         </Stack>
 
+        {/* ROW 2 */}
         <Stack
           direction={{ xs: "column", md: "row" }}
-          spacing={6}
+          spacing={{ xs: 3, md: 6 }}
           justifyContent="space-between"
         >
           {services.slice(2, 4).map((item, i) => (
@@ -96,7 +106,7 @@ export default function ServicesSection() {
               spacing={2}
               sx={{
                 width: { xs: "100%", md: "48%" },
-                padding: 3,
+                padding: { xs: 2, md: 3 },
                 "&:hover": {
                   transform: "translateY(-5px)",
                   background: "linear-gradient( rgb(228,243,255) 100%)",
@@ -119,12 +129,13 @@ export default function ServicesSection() {
           ))}
         </Stack>
 
+        {/* ROW 3 */}
         <Stack>
           <Paper
             elevation={0}
             sx={{
               width: { xs: "100%", md: "48%" },
-              padding: 3,
+              padding: { xs: 2, md: 3 },
               "&:hover": {
                 transform: "translateY(-5px)",
                 background: "linear-gradient( rgb(228,243,255) 100%)",

@@ -41,16 +41,24 @@ const smooth = [
 
 export default function WhyChoose() {
   return (
-    <Box component="section" sx={{ bgcolor: "#ffffff", position: "relative" }}>
+    <Box
+      component="section"
+      sx={{
+        bgcolor: "#ffffff",
+        position: "relative",
+        py: { xs: 4, md: 10 },
+      }}
+    >
       <Container maxWidth="xl">
         {/* SECTION HEADER */}
         <Box
           sx={{
             textAlign: "center",
-            mb: 8,
+            mb: { xs: 4, md: 8 },
             position: "relative",
             maxWidth: 800,
             mx: "auto",
+            px: { xs: 2, md: 0 },
           }}
         >
           <Typography
@@ -59,8 +67,9 @@ export default function WhyChoose() {
             sx={{
               fontWeight: 700,
               color: "text.primary",
-              mb: 2,
-              fontSize: { xs: "2rem", md: "3rem" },
+              mb: { xs: 1.5, md: 2 }, // MOBILE FIX
+              fontSize: { xs: "1.8rem", md: "3rem" },
+              lineHeight: { xs: 1.3, md: 1.3 },
             }}
           >
             Unified Intelligent IT Solutions Hub
@@ -68,18 +77,20 @@ export default function WhyChoose() {
         </Box>
 
         {/* SERVICES GRID */}
-        <Grid container spacing={10} justifyContent="center">
+        <Grid
+          container
+          spacing={{ xs: 4, sm: 6, md: 10 }}
+          justifyContent="center"
+        >
           {smooth.map((smooth, index) => (
             <Grid key={index} size={{ xs: 12, sm: 6, md: 4 }}>
               <Paper
                 elevation={0}
                 sx={{
-                  //   bgcolor: "#f8f9fa",
-                  p: 3,
+                  p: { xs: 2.5, md: 3 },
                   height: "100%",
                   display: "flex",
                   flexDirection: "column",
-
                   alignItems: "center",
                   textAlign: "center",
                   borderRadius: 3,
@@ -93,18 +104,23 @@ export default function WhyChoose() {
               >
                 <Typography
                   variant="h6"
-                  sx={{ fontWeight: 700, color: "text.primary", mb: 1 }}
+                  sx={{
+                    fontWeight: 700,
+                    color: "text.primary",
+                    mb: { xs: 0.8, md: 1 },
+                  }}
                 >
                   {smooth.title}
                 </Typography>
+
                 <Typography
                   variant="body1"
                   sx={{
                     color: "text.secondary",
-                    mb: 2,
-
-                    lineHeight: 1.8,
+                    mb: { xs: 1.2, md: 2 },
+                    lineHeight: { xs: 1.5, md: 1.8 },
                     textAlign: "left",
+                    fontSize: { xs: "0.95rem", md: "1rem" },
                   }}
                 >
                   {smooth.Description}
