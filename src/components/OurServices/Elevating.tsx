@@ -38,10 +38,10 @@ export default function ServicesSection() {
     <Box sx={{ px: 5, py: 8, maxWidth: "1200px", mx: "auto" }}>
       <Stack spacing={8}>
         <Typography
-          variant="h4"
+          variant="h5"
           component="h2"
           sx={{
-            fontWeight: 800,
+            fontWeight: 700,
             color: "text.primary",
             mb: 2,
             fontSize: { xs: "2rem", md: "3rem" },
@@ -61,6 +61,7 @@ export default function ServicesSection() {
               spacing={2}
               sx={{
                 width: { xs: "100%", md: "48%" },
+                padding: 3,
                 "&:hover": {
                   transform: "translateY(-5px)",
                   background: "linear-gradient( rgb(228,243,255) 100%)",
@@ -72,7 +73,7 @@ export default function ServicesSection() {
             >
               {item.icon}
               <Box>
-                <Typography variant="h5" fontWeight={700}>
+                <Typography variant="h5" fontWeight={600}>
                   {item.title}
                 </Typography>
                 <Typography mt={1} color="text.secondary">
@@ -95,6 +96,7 @@ export default function ServicesSection() {
               spacing={2}
               sx={{
                 width: { xs: "100%", md: "48%" },
+                padding: 3,
                 "&:hover": {
                   transform: "translateY(-5px)",
                   background: "linear-gradient( rgb(228,243,255) 100%)",
@@ -122,6 +124,7 @@ export default function ServicesSection() {
             elevation={0}
             sx={{
               width: { xs: "100%", md: "48%" },
+              padding: 3,
               "&:hover": {
                 transform: "translateY(-5px)",
                 background: "linear-gradient( rgb(228,243,255) 100%)",
