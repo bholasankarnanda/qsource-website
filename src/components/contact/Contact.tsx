@@ -102,7 +102,7 @@ const Contact = () => {
 
                   fontSize: "1rem",
                   borderRadius: "10px",
-                  background: "#2202d9ff",
+                  background: "#42a5f5",
                  
                 }}
               >
