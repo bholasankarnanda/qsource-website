@@ -15,28 +15,40 @@ import GroupAddIcon from "@mui/icons-material/GroupAdd";
 import SecurityIcon from "@mui/icons-material/Security";
 
 // Data Array for the Service Cards
-const services = [
-  {
-    title: "IT Consulting",
-    icon: <DisplaySettingsIcon sx={{ fontSize: 40 }} />,
-  },
-  { title: "Software Development", icon: <CodeIcon sx={{ fontSize: 40 }} /> },
-  {
-    title: "AI & ML Solutions",
-    icon: <PsychologyIcon sx={{ fontSize: 40 }} />,
-  },
-  { title: "Cloud Computing", icon: <CloudQueueIcon sx={{ fontSize: 40 }} /> },
-  {
-    title: "Staffing and Recruitment",
-    icon: <GroupAddIcon sx={{ fontSize: 40 }} />,
-  },
-  {
-    title: "Cybersecurity Solutions",
-    icon: <SecurityIcon sx={{ fontSize: 40 }} />,
-  },
-];
 
-export default function ServicesSection() {
+const ICON_MAP: Record<string, React.ReactElement> = {
+  consulting: <GroupAddIcon sx={{ fontSize: 40 }} />,
+  ai: <DisplaySettingsIcon sx={{ fontSize: 40 }} />,
+  cloud: <CloudQueueIcon sx={{ fontSize: 40 }} />,
+  cybersecurity: <SecurityIcon sx={{ fontSize: 40 }} />,
+  development: <CodeIcon fontSize="large" color="primary" />,
+  recruitment: <PsychologyIcon sx={{ fontSize: 40 }} />,
+  // default
+  default: <DisplaySettingsIcon fontSize="large" color="disabled" />,
+};
+
+// Define TypeScript Interfaces
+interface ServiceCard {
+  id: number;
+  title: string;
+  description: string;
+  iconKey: string;
+}
+
+interface HomePageData {
+  sectionTitle: string;
+  sectionDescription: string;
+  services: ServiceCard[];
+}
+
+interface Props {
+  data: HomePageData;
+}
+
+export default function ServicesSection({ data }: Props) {
+  if (!data) {
+    return null; // Don't render anything if data is missing
+  }
   return (
     <Box
       component="section"
@@ -63,7 +75,7 @@ export default function ServicesSection() {
               fontSize: { xs: "2rem", md: "3rem" },
             }}
           >
-            Driving success through tailored IT
+            {data.sectionTitle}
           </Typography>
 
           <Typography
@@ -76,18 +88,14 @@ export default function ServicesSection() {
               mx: "auto",
             }}
           >
-            Empower your business with our comprehensive suite of IT solutions,
-            including strategic consulting, bespoke software development,
-            managed services, cloud computing, staffing, recruitment expertise,
-            and robust cybersecurity solutions for seamless digital
-            transformation.
+            {data.sectionDescription}
           </Typography>
         </Box>
 
         {/* SERVICES GRID */}
         {/* spacing={3} adds gap between cards */}
         <Grid container spacing={3} justifyContent="center">
-          {services.map((service, index) => (
+          {data.services.map((service, index) => (
             <Grid key={index} size={{ xs: 6, sm: 4, md: 2 }}>
               <Paper
                 elevation={0} // No shadow by default (flat look)
@@ -123,7 +131,7 @@ export default function ServicesSection() {
                     transition: "color 0.3s",
                   }}
                 >
-                  {service.icon}
+                  {ICON_MAP[service.iconKey] || ICON_MAP["default"]}
                 </Box>
 
                 {/* Title */}
