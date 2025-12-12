@@ -6,6 +6,7 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import Link from "next/link";
+import { FadeIn } from "../MotionWrapper";
 
 const GreenSwoosh = () => (
   <Box
@@ -65,38 +66,42 @@ export default function HeroSection() {
           />
 
           {/* The Headline */}
-          <Typography
-            variant="h2"
-            component="h1"
-            sx={{
-              fontWeight: 800,
-              fontSize: { xs: "2rem", md: "6rem" },
-              mb: 2,
-              letterSpacing: -0.5,
-            }}
-          >
-            Empowering your{" "}
-            <Box
-              component="span"
-              sx={{ position: "relative", display: "inline-block" }}
+          <FadeIn delay={0.1} direction="left">
+            <Typography
+              variant="h2"
+              component="h1"
+              sx={{
+                fontWeight: 800,
+                fontSize: { xs: "2rem", md: "6rem" },
+                mb: 2,
+                letterSpacing: -0.5,
+              }}
             >
-              Enterprise
-              <GreenSwoosh />
-            </Box>
-          </Typography>
+              Empowering your{" "}
+              <Box
+                component="span"
+                sx={{ position: "relative", display: "inline-block" }}
+              >
+                Enterprise
+                <GreenSwoosh />
+              </Box>
+            </Typography>
+          </FadeIn>
 
           {/* The Subheadline */}
-          <Typography
-            variant="h3"
-            sx={{
-              fontWeight: 600,
-              fontSize: { xs: "1.2rem", md: "3rem" },
-              mb: 3,
-              opacity: 0.95,
-            }}
-          >
-            Your Partner in Comprehensive IT Services
-          </Typography>
+          <FadeIn>
+            <Typography
+              variant="h3"
+              sx={{
+                fontWeight: 600,
+                fontSize: { xs: "1.2rem", md: "3rem" },
+                mb: 3,
+                opacity: 0.95,
+              }}
+            >
+              Your Partner in Comprehensive IT Services
+            </Typography>
+          </FadeIn>
 
           {/* 5. The Description Text */}
           <Typography

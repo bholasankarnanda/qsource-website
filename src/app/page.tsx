@@ -4,13 +4,31 @@ import PartnershipSection from "@/components/Home/PartnershipSection";
 import ServicesSection from "@/components/Home/ServicesSection";
 import WhatWeOfferSection from "@/components/Home/WhatWeOfferSection";
 
+// Helper function to fetch data
+async function getStrapiData() {
+  const res = await fetch("http://localhost:1337/api/home-page?populate=*", {
+    cache: "no-store",
+  });
 
-export default function Home() {
+  if (!res.ok) {
+    throw new Error("Failed to fetch data");
+  }
+
+  return res.json();
+}
+
+export default async function Home() {
+  const strapiResponse = await getStrapiData();
+
+  // Clean up the response structure
+  // Strapi returns { data: { attributes: { ... } } }
+  const pageData = strapiResponse?.data;
+
   return (
     <main>
       {/*---------- Home component call start ------------ */}
       <HeroSection />
-      <ServicesSection />
+      <ServicesSection data={pageData} />
       <WhatWeOfferSection />
       <HowWeWorkSection />
       <PartnershipSection />
