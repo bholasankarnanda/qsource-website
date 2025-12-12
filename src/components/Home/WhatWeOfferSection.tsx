@@ -5,8 +5,40 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Image from "next/image";
+import { getWhatWeOffer } from "@/lib/whatWeOffer";
+
+interface SectionBlock {
+  type: string;
+  children: { type: string; text: string }[];
+}
+
+interface Section {
+  id: number;
+  Heading: string;
+  Description: SectionBlock[];
+  Image?: {
+    url: string;
+  } | null;
+}
+
+interface WhatWeOfferEntry {
+  title: string;
+  slug: string;
+  sections: Section[];
+}
 
 export default function WhatWeOfferSection() {
+  const [entry, setEntry] = React.useState<WhatWeOfferEntry | null>(null);
+
+  React.useEffect(() => {
+    async function load() {
+      const data = await getWhatWeOffer();
+      setEntry(data?.attributes || data);
+    }
+    load();
+  }, []);
+  if (!entry) return <div>Loading...</div>;
+
   return (
     <Box component="section" sx={{ py: 10, bgcolor: "#ffffff" }}>
       <Container maxWidth="xl">
@@ -45,7 +77,7 @@ export default function WhatWeOfferSection() {
                 fontSize: { xs: "2rem", md: "3rem" },
               }}
             >
-              What We Offer?
+              {entry.title}
             </Typography>
 
             {/*  Strategic IT Solutions */}
@@ -55,58 +87,55 @@ export default function WhatWeOfferSection() {
                 component="h3"
                 sx={{ fontWeight: 700, color: "text.primary", mb: 1 }}
               >
-                Strategic IT Solutions:
+                {entry.sections[0].Heading}
               </Typography>
               <Typography
                 variant="body1"
                 sx={{ color: "text.secondary", mb: 2, lineHeight: 1.7 }}
               >
-                Elevate your business to new heights with our Strategic IT
-                Solutions. We specialize in crafting tailored, cutting-edge
-                solutions that align seamlessly with your organizational goals.
-                From robust cybersecurity frameworks to advanced cloud
-                strategies.
-              </Typography>
-              <Typography
-                variant="body1"
-                sx={{ color: "text.secondary", lineHeight: 1.7 }}
-              >
-                Our team ensures that your technology not only meets the
-                challenges of today but is future-proofed for tomorrow.
-                Experience the power of innovation as we transform your IT
-                landscape, providing a strategic edge that propels your business
-                toward unparalleled success.
+                {entry.sections[0].Description.map((block, i) => (
+                  <Typography
+                    key={i}
+                    variant="body1"
+                    component="span"
+                    sx={{
+                      display: "block",
+                      color: "text.secondary",
+                      mb: 2,
+                      lineHeight: 1.7,
+                    }}
+                  >
+                    {block.children[0].text}
+                  </Typography>
+                ))}
               </Typography>
             </Box>
 
             {/* Talent Empowerment Services */}
-            <Box>
+            <Box sx={{ mb: 4 }}>
               <Typography
                 variant="h6"
                 component="h3"
                 sx={{ fontWeight: 700, color: "text.primary", mb: 1 }}
               >
-                Talent Empowerment Services:
+                {entry.sections[1].Heading}
               </Typography>
-              <Typography
-                variant="body1"
-                sx={{ color: "text.secondary", mb: 2, lineHeight: 1.7 }}
-              >
-                Unlock the full potential of your workforce with our Talent
-                Empowerment Services. We go beyond traditional staffing,
-                offering comprehensive programs that nurture skills, foster
-                innovation, and cultivate a culture of continuous learning.
-              </Typography>
-              <Typography
-                variant="body1"
-                sx={{ color: "text.secondary", lineHeight: 1.7 }}
-              >
-                Our commitment is not just to fill positions but to empower
-                individuals with the expertise needed to thrive in the
-                ever-evolving tech landscape. Partner with us to build a
-                resilient, high-performance team that not only leads your
-                organization into a future defined by agility and excellence.
-              </Typography>
+
+              {entry.sections[1].Description.map((block, i) => (
+                <Typography
+                  key={i}
+                  variant="body1"
+                  component="span"
+                  sx={{
+                    display: "block",
+                    color: "text.secondary",
+                    mb: 2,
+                    lineHeight: 1.7,
+                  }}
+                >
+                  {block.children[0].text}
+                </Typography>
+              ))}
             </Box>
           </Grid>
         </Grid>
